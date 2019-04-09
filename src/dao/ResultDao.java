@@ -16,13 +16,13 @@ public class ResultDao {
         this.conn = new ConnectionInstance();
     }
 
-    public void saveResult(Human winner, Integer beerDrinked) throws Exception {
+    public void saveResult(Human winner) throws Exception {
         String sq = "insert into ResultBattle(name_of_winner,drink_in_body) values (?,?)";
         try {
             conn.connect();
             PreparedStatement st = conn.getConn().prepareStatement(sq);
             st.setString(1, winner.getName());
-            st.setInt(2, beerDrinked);
+            st.setInt(2, winner.getDrinkedBeers());
             st.executeUpdate();
         } catch (SQLException es) {
             es.printStackTrace();

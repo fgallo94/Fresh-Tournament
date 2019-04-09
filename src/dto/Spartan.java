@@ -17,9 +17,6 @@ public class Spartan extends Human {
 
     @Override
     public String toString() {
-        return "Spartan{" +
-                super.toString()+
-                "peeBuff=" + peeBuff +
-                '}';
+        return "Spartan {" + super.toString() + " }";
     }
 }

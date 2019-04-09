@@ -1,6 +1,8 @@
 package controller;
 
+import dao.ResultDao;
 import dto.Human;
+import dto.Result;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,11 +11,10 @@ public class FreshTournament {
 
     private ArrayList<Human> fighters = new ArrayList<>();
 
-    public static void main(String[] args) {
-
+    public FreshTournament() {
     }
 
-    private void fight(List<Human> teamOne, List<Human> teamTwo) {
+    public void fight(List<Human> teamOne, List<Human> teamTwo) {
         sortAndShowList(teamOne);
         sortAndShowList(teamTwo);
         Optional<Human> fighterOne = getRandomFighter(teamOne);
@@ -24,6 +25,7 @@ public class FreshTournament {
             Optional<Human> winner = drinkUntilPee();
             if (winner.isPresent()) {
                 showWinner(winner.get());
+                saveWinner(winner.get());
             } else {
                 System.out.println("In the last drink both Human pee");
             }
@@ -36,19 +38,30 @@ public class FreshTournament {
         System.out.println("\n The winner is: " + winner.toString() + "\n");
     }
 
+    private void saveWinner(Human winner){
+        ResultDao resultDao = new ResultDao();
+        try{
+            resultDao.saveResult(winner);
+        }catch(Exception ex){
+            System.err.println("Problems saving data.");
+        }
+    }
+
     private Optional<Human> drinkUntilPee() {
-        while (fighters.size() > 1) {
-            fighters.forEach(human -> {
+        while (fighters.stream().noneMatch(h -> h.isWetPants())) {
+            fighters.stream()
+                    .forEach(human -> {
+                        human.setDrinkedBeers(human.getDrinkedBeers() + 1);
                         if (human.getDrink().drink()) {
-                            human.setBeerLimit(human.getBeerLimit() - 1);
-                            if (human.getToPee().pee()) {
-                                fighters.remove(human);
+                            if (human.getBeerLimit() <= human.getDrinkedBeers() &&
+                                    human.getToPee().pee()) {
+                                human.setWetPants(true);
                             }
                         }
 
                     });
         }
-        return fighters.stream().findFirst();
+        return fighters.stream().filter(human -> !human.isWetPants()).findAny();
     }
 
     private void addToFightersList(Human... human) {
@@ -68,10 +81,10 @@ public class FreshTournament {
     }
 
     private void showList(List<Human> team) {
-        System.out.println("\n  Sorted Team \n");
-        System.out.println("\n--------------------\n");
+        System.out.println("  Sorted Team \n");
+        System.out.println("--------------------\n");
         System.out.println(team.toString());
-        System.out.println("\n--------------------\n");
+        System.out.println("--------------------\n");
     }
 
     private List<Human> sortList(List<Human> listHuman) {

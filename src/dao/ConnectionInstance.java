@@ -9,14 +9,14 @@ public class ConnectionInstance {
     private Connection conn;
     private static ConnectionInstance instance;
 
-    public static ConnectionInstance getConnection(){
-        if (Objects.isNull(instance)){
+    public static ConnectionInstance getConnection() {
+        if (Objects.isNull(instance)) {
             instance = new ConnectionInstance();
         }
         return instance;
     }
 
-    public ConnectionInstance(){
+    public ConnectionInstance() {
         try {
             this.verifyDriver();
         } catch (ClassNotFoundException e) {
@@ -34,19 +34,20 @@ public class ConnectionInstance {
         }
     }
 
-    public void connect() throws SQLException{
-        try{
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Strategy", "root", "1234");
-        }catch (SQLException e){
-            System.err.println("SQLException: "+ e.getMessage());
+    public void connect() throws SQLException {
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strategy", "root", "1234");
+        } catch (SQLException e) {
+            System.err.println("SQLException: " + e.getMessage());
             throw e;
         }
     }
+
     private void verifyDriver() throws ClassNotFoundException {
-        try{
-            Class.forName("com.mysql.jdbc.driver");
-        }catch (ClassNotFoundException ex){
-            System.err.println("ClassNotFoundException: "+ex.getMessage());
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.err.println("ClassNotFoundException: " + ex.getMessage());
             throw ex;
         }
     }

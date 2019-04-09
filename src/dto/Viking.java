@@ -4,11 +4,10 @@ import interfaces.Drink;
 import interfaces.ToPee;
 
 public class Viking extends Human {
-    private static final Integer drinkBuff = 2;
+    private static final Integer drinkBuff = 1;
 
     public Viking(String name, Integer age, Integer weight, ToPee pee, Drink drink) {
         super(name, age, weight, pee, drink);
-        setBeerLimit(getBeerLimit() + 2);
     }
 
     public static Integer getDrinkBuff() {
@@ -17,9 +16,6 @@ public class Viking extends Human {
 
     @Override
     public String toString() {
-        return "Viking{" +
-                super.toString() +
-                "drinkBuff=" + drinkBuff +
-                '}';
+        return "Viking { " + super.toString() + " }";
     }
 }
