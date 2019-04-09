@@ -8,7 +8,7 @@ public class Spartan extends Human {
 
     public Spartan(String name, Integer age, Integer weight, ToPee toPee, Drink drink) {
         super(name, age, weight, toPee, drink);
-        this.peeBuff = 7;
+        this.peeBuff = 1;
     }
 
     public Integer getPeeBuff() {
@@ -17,5 +17,13 @@ public class Spartan extends Human {
 
     public void setPeeBuff(Integer peeBuff) {
         this.peeBuff = peeBuff;
+    }
+
+    @Override
+    public String toString() {
+        return "Spartan{" +
+                super.toString()+
+                "peeBuff=" + peeBuff +
+                '}';
     }
 }

@@ -9,6 +9,7 @@ public class Human implements Comparable<Human> {
     private Integer weight;
     private ToPee toPee;
     private Drink drink;
+    private Integer beerLimit = 3;
 
     public Human(String name, Integer age, Integer weight, ToPee toPee, Drink drink) {
         this.name = name;
@@ -24,6 +25,14 @@ public class Human implements Comparable<Human> {
 
     public Integer getAge() {
         return age;
+    }
+
+    public void setBeerLimit(Integer beerLimit) {
+        this.beerLimit = beerLimit;
+    }
+
+    public Integer getBeerLimit() {
+        return beerLimit;
     }
 
     public ToPee getToPee() {
