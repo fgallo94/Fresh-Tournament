@@ -6,7 +6,11 @@ public class VikingPee implements ToPee {
 
     @Override
     public boolean pee() {
-
-        return false;
+        boolean rta = false;
+        int diceRoll = (int)(Math.random() * 6) + 1;
+        if (diceRoll>3){
+            rta = true;
+        }
+        return rta;
     }
 }

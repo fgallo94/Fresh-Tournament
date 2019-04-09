@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class FreshTournament {
 
-    ArrayList<Human> fighters = new ArrayList<>();
+    private ArrayList<Human> fighters = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -21,22 +21,34 @@ public class FreshTournament {
         if (fighterOne.isPresent() &&
                 fighterTwo.isPresent()) {
             addToFightersList(fighterOne.get(), fighterTwo.get());
-
+            Optional<Human> winner = drinkUntilPee();
+            if (winner.isPresent()) {
+                showWinner(winner.get());
+            } else {
+                System.out.println("In the last drink both Human pee");
+            }
         } else {
             System.err.println(" Some list doesn't have any Human");
         }
     }
 
-    private void drinkUntilPee(){
-        while (fighters.size()>1){
-            fighters.stream()
-                    .forEach(human->{
-                        if(human.getDrink().drink()){
-                            human.setBeerLimit(human.getBeerLimit()-1);
-                            //TODO AGREGAR PEE
-                        };
+    private void showWinner(Human winner) {
+        System.out.println("\n The winner is: " + winner.toString() + "\n");
+    }
+
+    private Optional<Human> drinkUntilPee() {
+        while (fighters.size() > 1) {
+            fighters.forEach(human -> {
+                        if (human.getDrink().drink()) {
+                            human.setBeerLimit(human.getBeerLimit() - 1);
+                            if (human.getToPee().pee()) {
+                                fighters.remove(human);
+                            }
+                        }
+
                     });
         }
+        return fighters.stream().findFirst();
     }
 
     private void addToFightersList(Human... human) {
