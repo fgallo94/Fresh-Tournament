@@ -5,7 +5,8 @@ import interfaces.ToPee;
 public class VikingPee implements ToPee {
 
     @Override
-    public void pee() {
+    public boolean pee() {
 
+        return false;
     }
 }

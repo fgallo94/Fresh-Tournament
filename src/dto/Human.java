@@ -1,8 +1,9 @@
 package dto;
+
 import interfaces.Drink;
 import interfaces.ToPee;
 
-public class Human {
+public class Human implements Comparable<Human> {
     private String name;
     private Integer age;
     private Integer weight;
@@ -17,4 +18,23 @@ public class Human {
         this.drink = drink;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public ToPee getToPee() {
+        return toPee;
+    }
+
+    public Drink getDrink() {
+        return drink;
+    }
+
+    public int compareTo(Human human) {
+        return this.age.compareTo(human.getAge());
+    }
 }
