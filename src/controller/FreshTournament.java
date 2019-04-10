@@ -2,17 +2,12 @@ package controller;
 
 import dao.ResultDao;
 import dto.Human;
-import dto.Result;
 
-import java.util.*;
 import java.util.stream.Collectors;
 
 public class FreshTournament {
 
     private ArrayList<Human> fighters = new ArrayList<>();
-
-    public FreshTournament() {
-    }
 
     public void fight(List<Human> teamOne, List<Human> teamTwo) {
         sortAndShowList(teamOne);
@@ -38,11 +33,11 @@ public class FreshTournament {
         System.out.println("\n The winner is: " + winner.toString() + "\n");
     }
 
-    private void saveWinner(Human winner){
+    private void saveWinner(Human winner) {
         ResultDao resultDao = new ResultDao();
-        try{
+        try {
             resultDao.saveResult(winner);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.err.println("Problems saving data.");
         }
     }
@@ -52,13 +47,11 @@ public class FreshTournament {
             fighters.stream()
                     .forEach(human -> {
                         human.setDrinkedBeers(human.getDrinkedBeers() + 1);
-                        if (human.getDrink().drink()) {
-                            if (human.getBeerLimit() <= human.getDrinkedBeers() &&
-                                    human.getToPee().pee()) {
-                                human.setWetPants(true);
-                            }
+                        if (human.getDrink().drink() &&
+                                human.getBeerLimit() <= human.getDrinkedBeers() &&
+                                human.getToPee().pee()) {
+                            human.setWetPants(true);
                         }
-
                     });
         }
         return fighters.stream().filter(human -> !human.isWetPants()).findAny();
@@ -92,16 +85,5 @@ public class FreshTournament {
                 .sorted()
                 .collect(Collectors.toList());
     }
-
-    private void evenFight(Human fighterOne, Human fighterTwo) {
-        fighterOne.getDrink().drink();
-        fighterTwo.getDrink().drink();
-        fighterOne.getToPee().pee();
-        fighterTwo.getToPee().pee();
-    }
-
-    private Boolean fightVsBoss() {
-        boolean result = false;
-        return result;
-    }
+    //TODO ADD FIGHT VS BOSS
 }
