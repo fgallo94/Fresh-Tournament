@@ -1,7 +1,7 @@
-package dto;
+package com.utn.dto;
 
-import interfaces.Drink;
-import interfaces.ToPee;
+import com.utn.interfaces.Drink;
+import com.utn.interfaces.ToPee;
 
 public class Human implements Comparable<Human> {
     private String name;
@@ -9,10 +9,9 @@ public class Human implements Comparable<Human> {
     private ToPee toPee;
     private Drink drink;
     private Integer drinkedBeers = 0;
-    private Integer beerLimit = 3;
     private boolean wetPants = false;
 
-    public Human(String name, Integer age, ToPee toPee, Drink drink) {
+    Human(String name, Integer age, ToPee toPee, Drink drink) {
         this.name = name;
         this.age = age;
         this.toPee = toPee;
@@ -27,12 +26,8 @@ public class Human implements Comparable<Human> {
         return age;
     }
 
-    public void setBeerLimit(Integer beerLimit) {
-        this.beerLimit = beerLimit;
-    }
-
     public Integer getBeerLimit() {
-        return beerLimit;
+        return 3;
     }
 
     public boolean isWetPants() {

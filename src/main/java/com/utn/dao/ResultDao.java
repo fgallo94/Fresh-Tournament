@@ -1,22 +1,20 @@
-package dao;
+package com.utn.dao;
 
-import dto.Human;
-import dto.Result;
+
+import com.utn.dto.Human;
+import com.utn.dto.Result;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ResultDao {
 
-    private ConnectionInstance conn;
+    private ConnectionInstance conn = ConnectionInstance.getConnection();
 
-    public ResultDao() {
-        this.conn = new ConnectionInstance();
-    }
-
-    public void saveResult(Human winner) throws Exception {
+    public void saveResult(Human winner) {
         String sq = "insert into ResultBattle(name_of_winner,drink_in_body) values (?,?)";
         try {
             conn.connect();
@@ -36,7 +34,7 @@ public class ResultDao {
     }
 
     public ArrayList<Result> getResults() {
-        ArrayList<Result> results = new ArrayList<Result>();
+        ArrayList<Result> results = new ArrayList<>();
         String sq = "select * from ResultBattle rb order by rb.id";
         try {
             conn.connect();
@@ -45,7 +43,7 @@ public class ResultDao {
             if (rs == null) {
                 System.out.println(" No hay registros en la base de datos");
             }
-            while (rs.next()) {
+            while (Objects.requireNonNull(rs).next()) {
                 Result result = new Result(rs.getString("name_of_winner"), rs.getInt("drink_in_body"));
                 results.add(result);
             }

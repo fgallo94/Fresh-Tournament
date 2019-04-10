@@ -1,8 +1,7 @@
-package interfaces.implementation;
+package com.utn.dto;
 
-import controller.Dice;
-import dto.Viking;
-import interfaces.Drink;
+import com.utn.controller.Dice;
+import com.utn.interfaces.Drink;
 
 public class VikingDrink implements Drink {
 

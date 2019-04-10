@@ -1,7 +1,8 @@
-package interfaces.implementation;
+package com.utn.dto;
 
-import controller.Dice;
-import interfaces.Drink;
+
+import com.utn.controller.Dice;
+import com.utn.interfaces.Drink;
 
 public class SpartanDrink implements Drink {
 

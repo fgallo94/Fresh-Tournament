@@ -1,4 +1,4 @@
-package dao;
+package com.utn.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,7 @@ public class ConnectionInstance {
         return instance;
     }
 
-    public ConnectionInstance() {
+    ConnectionInstance() {
         try {
             this.verifyDriver();
         } catch (ClassNotFoundException e) {
@@ -24,17 +24,13 @@ public class ConnectionInstance {
         }
     }
 
-    public void disconnect() throws Exception {
-        try {
-            if (conn != null) {
-                conn.close();
-            }
-        } catch (Exception e) {
-            throw e;
+    void disconnect() throws Exception {
+        if (conn != null) {
+            conn.close();
         }
     }
 
-    public void connect() throws SQLException {
+    void connect() throws SQLException {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strategy", "root", "1234");
         } catch (SQLException e) {
@@ -52,7 +48,7 @@ public class ConnectionInstance {
         }
     }
 
-    public Connection getConn() {
+    Connection getConn() {
         return conn;
     }
 }
