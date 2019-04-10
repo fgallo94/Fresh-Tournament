@@ -1,4 +1,4 @@
-package controller;
+package com.utn.controller;
 
 public class Dice {
 

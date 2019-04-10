@@ -1,8 +1,8 @@
-package interfaces.implementation;
+package com.utn.dto;
 
-import controller.Dice;
-import dto.Spartan;
-import interfaces.ToPee;
+
+import com.utn.controller.Dice;
+import com.utn.interfaces.ToPee;
 
 public class SpartanPee implements ToPee {
 

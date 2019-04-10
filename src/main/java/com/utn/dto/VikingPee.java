@@ -1,7 +1,8 @@
-package interfaces.implementation;
+package com.utn.dto;
 
-import controller.Dice;
-import interfaces.ToPee;
+
+import com.utn.controller.Dice;
+import com.utn.interfaces.ToPee;
 
 public class VikingPee implements ToPee {
 

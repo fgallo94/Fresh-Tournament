@@ -1,15 +1,22 @@
-package controller;
+package com.utn.controller;
 
-import dao.ResultDao;
-import dto.Human;
+import com.utn.dao.ResultDao;
+import com.utn.dto.Human;
 
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FreshTournament {
 
     private ArrayList<Human> fighters = new ArrayList<>();
+    private ResultDao resultDao;
+
+    public FreshTournament() {
+        resultDao = new ResultDao();
+    }
 
     public void fight(List<Human> teamOne, List<Human> teamTwo) {
+        showLastWinners();
         sortAndShowList(teamOne);
         sortAndShowList(teamTwo);
         Optional<Human> fighterOne = getRandomFighter(teamOne);
@@ -29,12 +36,17 @@ public class FreshTournament {
         }
     }
 
+    private void showLastWinners() {
+        System.out.println("----Last Winners Are ----\n");
+        System.out.println(resultDao.getResults().toString());
+        System.out.println("-----------------------\n");
+    }
+
     private void showWinner(Human winner) {
         System.out.println("\n The winner is: " + winner.toString() + "\n");
     }
 
     private void saveWinner(Human winner) {
-        ResultDao resultDao = new ResultDao();
         try {
             resultDao.saveResult(winner);
         } catch (Exception ex) {
@@ -43,24 +55,20 @@ public class FreshTournament {
     }
 
     private Optional<Human> drinkUntilPee() {
-        while (fighters.stream().noneMatch(h -> h.isWetPants())) {
-            fighters.stream()
-                    .forEach(human -> {
-                        human.setDrinkedBeers(human.getDrinkedBeers() + 1);
-                        if (human.getDrink().drink() &&
-                                human.getBeerLimit() <= human.getDrinkedBeers() &&
-                                human.getToPee().pee()) {
-                            human.setWetPants(true);
-                        }
-                    });
-        }
+        while (fighters.stream().noneMatch(Human::isWetPants)) fighters
+                .forEach(human -> {
+                    human.setDrinkedBeers(human.getDrinkedBeers() + 1);
+                    if (human.getDrink().drink() &&
+                            human.getBeerLimit() <= human.getDrinkedBeers() &&
+                            human.getToPee().pee()) {
+                        human.setWetPants(true);
+                    }
+                });
         return fighters.stream().filter(human -> !human.isWetPants()).findAny();
     }
 
     private void addToFightersList(Human... human) {
-        Arrays.stream(human).forEach(h -> {
-            fighters.add(h);
-        });
+        fighters.addAll(Arrays.asList(human));
     }
 
     private Optional<Human> getRandomFighter(List<Human> listHuman) {
@@ -69,7 +77,7 @@ public class FreshTournament {
     }
 
     private void sortAndShowList(List<Human> team) {
-        sortList(team);
+        team = sortList(team);
         showList(team);
     }
 
@@ -82,7 +90,7 @@ public class FreshTournament {
 
     private List<Human> sortList(List<Human> listHuman) {
         return listHuman.stream()
-                .sorted()
+                .sorted(Comparator.comparing(Human::getAge))
                 .collect(Collectors.toList());
     }
     //TODO ADD FIGHT VS BOSS
