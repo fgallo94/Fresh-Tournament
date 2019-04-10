@@ -4,7 +4,6 @@ import com.utn.dao.ResultDao;
 import com.utn.dto.Human;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class FreshTournament {
 
@@ -77,7 +76,7 @@ public class FreshTournament {
     }
 
     private void sortAndShowList(List<Human> team) {
-        team = sortList(team);
+        sortList(team);
         showList(team);
     }
 
@@ -88,10 +87,8 @@ public class FreshTournament {
         System.out.println("--------------------\n");
     }
 
-    private List<Human> sortList(List<Human> listHuman) {
-        return listHuman.stream()
-                .sorted(Comparator.comparing(Human::getAge))
-                .collect(Collectors.toList());
+    private void sortList(List<Human> listHuman) {
+        listHuman.sort(Comparator.comparing(Human::getAge));
     }
     //TODO ADD FIGHT VS BOSS
 }

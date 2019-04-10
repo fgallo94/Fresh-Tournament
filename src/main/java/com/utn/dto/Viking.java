@@ -11,7 +11,7 @@ public class Viking extends Human {
         super(name, age, pee, drink);
     }
 
-    static Integer getDrinkBuff() {
+    public static Integer getDrinkBuff() {
         return drinkBuff;
     }
 

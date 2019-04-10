@@ -16,7 +16,7 @@ public class ConnectionInstance {
         return instance;
     }
 
-    ConnectionInstance() {
+    public ConnectionInstance() {
         try {
             this.verifyDriver();
         } catch (ClassNotFoundException e) {
@@ -24,13 +24,13 @@ public class ConnectionInstance {
         }
     }
 
-    void disconnect() throws Exception {
+    public void disconnect() throws Exception {
         if (conn != null) {
             conn.close();
         }
     }
 
-    void connect() throws SQLException {
+    public void connect() throws SQLException {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strategy", "root", "1234");
         } catch (SQLException e) {
@@ -48,7 +48,7 @@ public class ConnectionInstance {
         }
     }
 
-    Connection getConn() {
+    public Connection getConn() {
         return conn;
     }
 }

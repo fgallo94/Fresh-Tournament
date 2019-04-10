@@ -10,10 +10,9 @@ public class Spartan extends Human {
         super(name, age, toPee, drink);
     }
 
-    static Integer getPeeBuff() {
+    public static Integer getPeeBuff() {
         return peeBuff;
     }
-
 
     @Override
     public String toString() {
