@@ -1,7 +1,6 @@
 package com.utn.dao;
 
 
-import com.utn.dto.Human;
 import com.utn.dto.Result;
 
 import java.sql.PreparedStatement;
@@ -14,13 +13,13 @@ public class ResultDao {
 
     private ConnectionInstance conn = ConnectionInstance.getConnection();
 
-    public void saveResult(Human winner) {
+    public void saveResult(Result result) {
         String sq = "insert into ResultBattle(name_of_winner,drink_in_body) values (?,?)";
         try {
             conn.connect();
             PreparedStatement st = conn.getConn().prepareStatement(sq);
-            st.setString(1, winner.getName());
-            st.setInt(2, winner.getDrinkedBeers());
+            st.setString(1, result.getNameOfWinner());
+            st.setInt(2, result.getDrinkInBody());
             st.executeUpdate();
         } catch (SQLException es) {
             es.printStackTrace();

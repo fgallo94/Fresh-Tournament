@@ -11,7 +11,7 @@ public class Human implements Comparable<Human> {
     private Integer drinkedBeers = 0;
     private boolean wetPants = false;
 
-    Human(String name, Integer age, ToPee toPee, Drink drink) {
+    public Human(String name, Integer age, ToPee toPee, Drink drink) {
         this.name = name;
         this.age = age;
         this.toPee = toPee;

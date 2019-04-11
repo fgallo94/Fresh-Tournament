@@ -9,6 +9,14 @@ public class Result {
         this.drinkInBody = drinkInBody;
     }
 
+    public String getNameOfWinner() {
+        return nameOfWinner;
+    }
+
+    public Integer getDrinkInBody() {
+        return drinkInBody;
+    }
+
     @Override
     public String toString() {
         return "Result{" +
