@@ -1,4 +1,4 @@
-# StrategyPatternTP1
+# Fresh-Tournament
 
 ## Pre-requisites
 ### Database
