@@ -9,6 +9,11 @@ public class ConnectionInstance {
     private Connection conn;
     private static ConnectionInstance instance;
 
+    /**
+     * Singleton of instance
+     *
+     * @return instance of ConnectionInstance or new instance if not exists
+     */
     public static ConnectionInstance getConnection() {
         if (Objects.isNull(instance)) {
             instance = new ConnectionInstance();
@@ -24,12 +29,22 @@ public class ConnectionInstance {
         }
     }
 
+    /**
+     * Close a connection
+     *
+     * @throws Exception
+     */
     public void disconnect() throws Exception {
         if (conn != null) {
             conn.close();
         }
     }
 
+    /**
+     * Connect the instance using DriverManager.getConnection
+     *
+     * @throws SQLException
+     */
     public void connect() throws SQLException {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/strategy", "root", "1234");
@@ -39,6 +54,11 @@ public class ConnectionInstance {
         }
     }
 
+    /**
+     * Verify if exists the library
+     *
+     * @throws ClassNotFoundException
+     */
     private void verifyDriver() throws ClassNotFoundException {
         try {
             Class.forName("com.mysql.jdbc.Driver");

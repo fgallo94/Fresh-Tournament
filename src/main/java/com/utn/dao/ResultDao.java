@@ -13,6 +13,11 @@ public class ResultDao {
 
     private ConnectionInstance conn = ConnectionInstance.getConnection();
 
+    /**
+     * Save Result into a data base
+     *
+     * @param result Result to insert
+     */
     public void saveResult(Result result) {
         String sq = "insert into ResultBattle(name_of_winner,drink_in_body) values (?,?)";
         try {
@@ -32,6 +37,11 @@ public class ResultDao {
         }
     }
 
+    /**
+     * Get all the result of the data base as ArrayList of Result.
+     *
+     * @return ArrayList<Result>
+     */
     public ArrayList<Result> getResults() {
         ArrayList<Result> results = new ArrayList<>();
         String sq = "select * from ResultBattle rb order by rb.id";

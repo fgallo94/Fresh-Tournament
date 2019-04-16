@@ -54,6 +54,14 @@ public class Human implements Comparable<Human> {
         return drink;
     }
 
+    /**
+     * Implementation of comparable using Age
+     *
+     * @param human Human to compare with this
+     * @return -1 if it is lower
+     * 0 if it is equals
+     * 1 if it is greater
+     */
     public int compareTo(Human human) {
         return this.age.compareTo(human.getAge());
     }

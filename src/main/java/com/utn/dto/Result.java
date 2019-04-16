@@ -1,5 +1,7 @@
 package com.utn.dto;
-
+/**
+ * Simple POJO of Result
+ */
 public class Result {
     private String nameOfWinner;
     private Integer drinkInBody;
