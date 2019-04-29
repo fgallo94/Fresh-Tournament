@@ -1,7 +1,13 @@
 package com.utn;
 
 import com.utn.controller.FreshTournament;
-import com.utn.dto.*;
+import com.utn.model.Human;
+import com.utn.model.Spartan;
+import com.utn.model.SpartanDrink;
+import com.utn.model.SpartanPee;
+import com.utn.model.Viking;
+import com.utn.model.VikingDrink;
+import com.utn.model.VikingPee;
 
 import java.util.Arrays;
 import java.util.List;

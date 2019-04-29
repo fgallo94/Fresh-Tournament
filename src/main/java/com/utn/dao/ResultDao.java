@@ -1,7 +1,7 @@
 package com.utn.dao;
 
 
-import com.utn.dto.Result;
+import com.utn.model.Result;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

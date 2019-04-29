@@ -1,4 +1,4 @@
-package com.utn.dto;
+package com.utn.model;
 
 import com.utn.interfaces.Drink;
 import com.utn.interfaces.ToPee;

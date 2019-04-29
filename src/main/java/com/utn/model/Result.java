@@ -1,4 +1,5 @@
-package com.utn.dto;
+package com.utn.model;
+
 /**
  * Simple POJO of Result
  */

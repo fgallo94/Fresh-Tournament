@@ -1,10 +1,14 @@
 package com.utn.controller;
 
 import com.utn.dao.ResultDao;
-import com.utn.dto.Human;
-import com.utn.dto.Result;
+import com.utn.model.Human;
+import com.utn.model.Result;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Main controller of the system.

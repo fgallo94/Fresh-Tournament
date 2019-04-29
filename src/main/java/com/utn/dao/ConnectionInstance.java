@@ -6,8 +6,16 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class ConnectionInstance {
-    private Connection conn;
     private static ConnectionInstance instance;
+    private Connection conn;
+
+    public ConnectionInstance() {
+        try {
+            this.verifyDriver();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Singleton of instance
@@ -19,14 +27,6 @@ public class ConnectionInstance {
             instance = new ConnectionInstance();
         }
         return instance;
-    }
-
-    public ConnectionInstance() {
-        try {
-            this.verifyDriver();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
